@@ -2,6 +2,8 @@
 from django.http import HttpResponse
 from django.http import HttpRequest
 from django.template import loader
+from django.shortcuts import render
+from django.http import Http404
 
 from blog.models import comments
 from .models import users
@@ -12,10 +14,14 @@ def commentIndex(request):
     asset_data = {
         'comments':comment_list
     }
-    return HttpResponse(loader.get_template('comments/index.html').render(asset_data , request))
+    return render(request , 'comments/index.html' , asset_data)
     
 def commentsDetail(request , id):
-    q = comments.objects.get(id = id)
+    try:
+        q = comments.objects.get(id = id)
+    except comments.DoesNotExist:
+        raise Http404("id is not exists")
+
     str = 'did you looking for this content:%s'
     return HttpResponse( str % q.content)
         
