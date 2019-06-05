@@ -1,0 +1,25 @@
+<h1>Hello , World!</h1>
+<div>
+    <table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>用户ID</th>
+            <th>留言</th>
+            <th>发布时间</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if comments %}
+        {% for v in comments %}
+        <tr>
+            <td>{{ v.id }}</td>
+            <td>{{ v.user_id }}</td>
+            <td>{{ v.content }}</td>
+            <td>{{ v.add_time }}</td>
+        </tr>
+        {% endfor %}
+    {% endif %}       
+    </tbody>
+    </table>
+</div>
