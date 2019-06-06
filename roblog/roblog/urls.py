@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from blog import views
 
+
+
 urlpatterns = [
     path('admin/' , admin.site.urls),
-    path('' , views.commentIndex , name = 'home'),
+    path('' , views.commentIndex , name = 'index'),
     path('comments/detail/<int:id>' , views.commentsDetail , name ='detail'),
-    path('comments/latest' , views.latestComment , name='latest')
+    path('comments/latest' , views.latestComment , name='latest'),
+    path('comments/store' , views.storeComment , name='store'),
+    path('comments/save' , views.saveComment , name='save'),
 ]

@@ -1,8 +1,7 @@
-# _*_ coding: utf-8 _*_
 from django.http import HttpResponse
 from django.http import HttpRequest
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404
 from django.http import Http404
 
 from blog.models import comments
@@ -17,13 +16,18 @@ def commentIndex(request):
     return render(request , 'comments/index.html' , asset_data)
     
 def commentsDetail(request , id):
-    try:
-        q = comments.objects.get(id = id)
-    except comments.DoesNotExist:
-        raise Http404("id is not exists")
+    # try:
+    #     q = comments.objects.get(id = id)
+    # except comments.DoesNotExist:
+    #     raise Http404("id is not exists")
 
-    str = 'did you looking for this content:%s'
-    return HttpResponse( str % q.content)
+
+    comment = get_object_or_404(comments , id = id )
+    asset_data = {
+        'comment' : comment
+    }
+    
+    return render(request , 'comments/detail.html' , asset_data)
         
 
 def latestComment(request):

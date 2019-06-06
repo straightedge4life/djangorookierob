@@ -1,5 +1,12 @@
-<h1>Hello , World!</h1>
-<div>
+<div style="width:300px;height:100px; margin:0 auto;">
+    <span style="text-align:center;">HEADER</span>
+</div>
+<div style="width:300px; margin: 0 auto;">
+    <form method="get" action="">
+        <div>
+            回复<input type="text" name="content" > <button>提交</button>
+        <div>
+    </form>
     <table border="1">
     <thead>
         <tr>
@@ -13,9 +20,13 @@
     {% if comments %}
         {% for v in comments %}
         <tr>
-            <td>{{ v.id }}</td>
+            <td></td>
             <td>{{ v.user_id }}</td>
-            <td>{{ v.content }}</td>
+            <td>
+                <a href="{% url 'detail' v.id %}">
+                    {{ v.content }}
+                </a>
+            </td>
             <td>{{ v.add_time }}</td>
         </tr>
         {% endfor %}
