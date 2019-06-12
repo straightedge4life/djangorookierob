@@ -25,5 +25,6 @@ urlpatterns = [
     path('comments/detail/<int:id>' , views.commentsDetail , name ='detail'),
     path('comments/latest' , views.latestComment , name='latest'),
     path('comments/store' , views.storeComment , name='store'),
-    path('comments/save' , views.saveComment , name='save'),
+    path('comments/edit/<int:id>' , views.editComment , name='edit'),
+    path('comments/save/<int:id>' , views.saveComment , name='save'),
 ]

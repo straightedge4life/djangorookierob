@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>编辑</title>
+    <style>
+        .box{
+            width:500px;
+            margin:100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+    <form method="post" action="{% url 'save' comment.id %}">
+    {% csrf_token %}
+        留言<input type="txt" name="content" value="{{ comment.content }}" /> <br/>
+        用户ID <input type="txt" name="user_id" value="{{ comment.user_id }}" /> <br/>
+        <button>提交</button>
+    
+    </form>
+    </div>
+</body>
+</html>

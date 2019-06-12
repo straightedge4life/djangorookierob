@@ -1,8 +1,9 @@
-<div style="width:300px;height:100px; margin:0 auto;">
+<div style="width:500px;height:300px; margin:0 auto;">
     <span style="text-align:center;">HEADER</span>
 </div>
-<div style="width:300px; margin: 0 auto;">
-    <form method="get" action="">
+<div style="width:500px; margin: 0 auto;">
+    <form method="post" action="{% url 'store' %}">
+       {% csrf_token %}
         <div>
             回复<input type="text" name="content" > <button>提交</button>
         <div>
@@ -10,17 +11,18 @@
     <table border="1">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>用户ID</th>
-            <th>留言</th>
-            <th>发布时间</th>
+            <th width="50">ID</th>
+            <th width="80">用户ID</th>
+            <th width="300">留言</th>
+            <th width="150">发布时间</th>
+            <th width="100">操作</th>
         </tr>
     </thead>
     <tbody>
     {% if comments %}
         {% for v in comments %}
         <tr>
-            <td></td>
+            <td>{{ v.id }}</td>
             <td>{{ v.user_id }}</td>
             <td>
                 <a href="{% url 'detail' v.id %}">
@@ -28,6 +30,7 @@
                 </a>
             </td>
             <td>{{ v.add_time }}</td>
+            <td><a href="{% url 'edit' v.id %}">编辑</a></td>
         </tr>
         {% endfor %}
     {% endif %}       
