@@ -10,7 +10,7 @@ from .models import users
 
 # Create your views here.
 def commentIndex(request):
-    comment_list = comments.objects.order_by('-add_time') 
+    comment_list = comments.objects.order_by('-id') 
     asset_data = {
         'comments':comment_list
     }
